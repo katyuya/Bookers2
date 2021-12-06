@@ -8,13 +8,17 @@ class UsersController < ApplicationController
   end
 
   def create
+    @user = User.new(user_params)
+    @user.save
   end
 
   def show
     @user = User.find(params[:id])
   end
-  
+
   private
-  
-  def params
+
+    def user_params
+      params.require(:user).permit(:title, :body)
+    end
 end
