@@ -6,18 +6,20 @@ class UsersController < ApplicationController
     @user = User.new
   end
   def index
-
+    @users = User.all
+    
   end
 
 
   def create
-    user = User.new(user_params)
-    user.save
+    @user = User.new(user_params)
+    @user.save
   end
 
   def show
-    @users = User.all
+    @book = Book.new
     @user = User.find(params[:id])
+    @books = @user.books
   end
 
 
