@@ -4,11 +4,17 @@
       <h2 class="mt-3">
         New book
       </h2>
+      <% if @user.errors.any? %>
+        <%= @user.errors.count %>errors prohibited this obj from being saved:
+        <% @user.errors.full_messages.each do |message| %>
+          <%= message %>
+        <% end %>
+      <% end %>
       <%= form_with model: @user, local:true do |f| %>
       <div class="form-group">
-        <label for="inputName">name</label>
+        <label for="user_name">name</label>
 
-        <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"名前", class: "form-control user_name"%>
+        <%= f.text_field :name, autofocus: true, class: "form-control"%>
       </div>
       <div class="form-group">
         <label for="inputImage">image</label>
