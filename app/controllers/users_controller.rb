@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :correct_user, only: [:edit, :update]
 
   def top
   end
@@ -19,7 +20,6 @@ class UsersController < ApplicationController
 
   end
 
-
   def edit
     @user = User.find(params[:id])
   end
@@ -27,6 +27,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
+      flash[:notice] = "You have updated user successfully."
       redirect_to user_path(@user.id)
     else
       render :edit
