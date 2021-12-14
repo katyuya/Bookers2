@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  before_action :correct_user, only: [:edit, :update]
 
   def top
   end
@@ -22,6 +21,7 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    redirect_to user_path(current_user) unless current_user.id == @user.id
   end
 
   def update
